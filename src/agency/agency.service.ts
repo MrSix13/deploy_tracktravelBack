@@ -1,6 +1,7 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
+import { AgencyUserUpdateDto } from 'src/agency-user/dto/agency-user-update.dto';
 import { AgencyDocument } from './schema/agency.schema';
 import { AgencyRegistrationDTO } from './dto/agency-register.dto';
 import { AgencyRepository } from './agency.repository';
@@ -27,5 +28,9 @@ export class AgencyService {
 
   async getAgencyByGoogleId(googleId: string): Promise<AgencyDocument> {
     return this._agencyRepository.findOne({ googleId });
+  }
+
+  async getAgencyByEmail(email: string): Promise<AgencyDocument> {
+    return this._agencyRepository.findOne({ email });
   }
 }

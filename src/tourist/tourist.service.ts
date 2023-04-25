@@ -2,7 +2,7 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 // import { InjectModel } from '@nestjs/mongoose';
 // import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
-import { Tourist } from './schema/tourist.schema';
+import { Tourist, TouristDocument } from './schema/tourist.schema';
 import { TouristRegistrationDTO } from './dto/tourist-registration.dto';
 // import { TouristUpdateDto } from './dto/tourist-update.dto';
 import { TouristRepository } from './tourist.repository';
@@ -42,7 +42,13 @@ export class TouristService {
   }
 
   async getTouristByGoogleId(googleId: string): Promise<TouristRegistrationDTO> {
+    // console.log(googleId);
+    // buscar en base de datos el usuario id, si arroja error registrar sino devolver
     return this._touristRepository.findOne({ googleId });
+  }
+
+  async getTouristByEmail(email: string): Promise<TouristDocument> {
+    return this._touristRepository.findOne({ email });
   }
 
   // POST a http://localhost:3000/tourist/register con: { "firstName": "Carlos", "lastName": "Reyes", "email": "carlos@gmail.com", "password": "Carlos..14", "phoneNumber": "3002003344" }

@@ -14,7 +14,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     });
   }
 
-  async validate(accessToken: string, refreshToken: string, profile: Profile, done: Function) {
+  async validate(accessToken: string, refreshToken: string, profile: Profile) {
     const userType = 'TOURIST';
     const user = await this.googleService.validateGoogleUser(
       {
@@ -30,6 +30,6 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       userType,
     );
 
-    done(null, user);
+    return user || null;
   }
 }

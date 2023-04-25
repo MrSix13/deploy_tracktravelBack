@@ -48,6 +48,11 @@ export class TouristController {
     }
   }
 
+  @Get('tourist/google')
+  async touristGogle() {
+    return 'hola mundo ';
+  }
+
   // @Put(':id')
   // async update(@Param('id') id: string, @Body() updateDto: TouristUpdateDto): Promise<Tourist> {
   //     try {

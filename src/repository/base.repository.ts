@@ -43,9 +43,14 @@ export class BaseRepository<T> {
     }
   }
 
-  async findOne(key: any): Promise<T> {
-    return this.BaseModel.findOne({ key }).exec();
+  async update(id: string, update: any): Promise<T> {
+    return this.BaseModel.findByIdAndUpdate(id, update, { new: true }).exec();
   }
+
+  async findOne(query: any): Promise<T | null> {
+    return this.BaseModel.findOne(query).exec();
+  }
+
   // Actualiza
   // async update(id:string, object: any): Promise<T>{
   //     const updated = await this.BaseModel.findByIdAndUpdate(object,object);

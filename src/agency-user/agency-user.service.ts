@@ -22,7 +22,7 @@ export class AgencyUserService {
       agencyUserRegistrationDto;
 
     const touristWithEmail = await this._agencyUserRepository.findByEmail(email);
-    console.log(touristWithEmail);
+    // console.log(touristWithEmail);
     if (touristWithEmail) {
       throw new BadRequestException('Email already registered');
     }
@@ -34,7 +34,7 @@ export class AgencyUserService {
       email,
       password: hashedPassword,
       phoneNumber,
-      isActive
+      isActive,
     });
 
     return createdAgencyUser;
