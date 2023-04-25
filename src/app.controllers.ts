@@ -29,7 +29,7 @@ export class AppController {
     res.redirect(authUrl);
   }
 
-  @Get('/api/auth/google/redirect')
+  @Get('/api/auth/google/callback')
   async authGoogle(@Query('state') role: string, @Res() response: Response) {
     try {
       // Obtenemos el token de acceso de Google
