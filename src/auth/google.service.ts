@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import axios from 'axios';
 // import { TouristRepository } from 'src/tourist/tourist.repository';
 import { AgencyRegistrationDTO } from '../agency/dto/agency-register.dto';
