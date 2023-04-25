@@ -26,11 +26,12 @@ export class GoogleAuthService {
 
   generateGoogleAuthUrl(role: string): string {
     const scope = ['profile', 'email'];
+    const redirectUrl = process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}/api/auth/google/callback`
+      : process.env.GOOGLE_REDIRECT_URL;
     const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${
       process.env.GOOGLE_CLIENT_ID
-    }&redirect_uri=${process.env.GOOGLE_REDIRECT_URL}&response_type=code&scope=${scope.join(
-      ' ',
-    )}&state=${role}`;
+    }&redirect_uri=${redirectUrl}&response_type=code&scope=${scope.join(' ')}&state=${role}`;
     console.log(url);
     return url;
   }
