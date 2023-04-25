@@ -1,7 +1,7 @@
 import { Controller, Get, Query, Res, Req, HttpStatus } from '@nestjs/common';
 import { IsString, IsOptional } from 'class-validator';
-import { Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
+import { Response } from 'express';
 import { GoogleAuthService } from './auth/google.service';
 
 interface IMyRequest extends Request {
