@@ -25,7 +25,6 @@ export class AppController {
   @Get('/api/auth/google')
   async auth(@Query() query: QueryRolDto, @Res() res: Response) {
     const authUrl = await this.googleAuthService.generateGoogleAuthUrl(query.role);
-    console.log('authURL', authUrl);
     res.redirect(authUrl);
   }
 

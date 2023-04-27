@@ -31,6 +31,7 @@ export class GoogleAuthService {
       process.env.GOOGLE_CLIENT_ID
     }&redirect_uri=${redirectUrl}&response_type=code&scope=${scope.join(' ')}&state=${role}`;
     console.log(url);
+    console.log('google redirect uri', redirectUrl);
     return url;
   }
 
