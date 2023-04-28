@@ -1,7 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { Seller } from './schema/Seller.schema';
-import { SellerRegistrationDto } from './dto/Seller-registration.dto';
+import { Seller } from './schema/seller.schema';
+import { SellerRegistrationDto } from './dto/seller-registration.dto';
 import { SellerRepository } from './seller.repository';
 
 @Injectable()
