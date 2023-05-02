@@ -20,6 +20,7 @@ export class AuthService {
     let userModel: Model<TouristDocument | AgencyDocument>;
     let userNotFoundMsg: string;
     let passwordIncorrectMsg: string;
+
     if (type === 'tourist') {
       userModel = this.touristModel;
       userNotFoundMsg = 'USER_NOT_FOUND';

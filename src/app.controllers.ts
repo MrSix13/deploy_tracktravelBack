@@ -47,7 +47,8 @@ export class AppController {
 
       // // Redirigimos al usuario a la URL deseada con el JWT
       console.log('link', `${process.env.API_URL}/home/${tokenJWT}`);
-      response.redirect(`${process.env.API_URL}/home/${tokenJWT}`);
+      // response.redirect(`${process.env.API_URL}/home/${tokenJWT}`);
+      response.redirect(`${process.env.DEEP_LINK_CLIENT}/home/${tokenJWT}`);
     } catch (error) {
       console.error(error);
       response.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
