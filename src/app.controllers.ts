@@ -67,11 +67,12 @@ export class AppController {
       console.log('user', user);
       if (!user) {
         response.status(HttpStatus.OK).json('Not Authenticated');
+      } else {
+        response.status(HttpStatus.OK).json({
+          email: user,
+        });
+        return;
       }
-
-      response.status(HttpStatus.OK).json({
-        email: user,
-      });
     } catch (error) {
       console.error(error);
       response.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
