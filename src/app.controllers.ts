@@ -62,6 +62,7 @@ export class AppController {
   @Get('/api/auth/google/status')
   async authGoogleStatus(@Req() request: Request, @Res() response: Response) {
     try {
+      console.log('request', request);
       const { user } = request;
       console.log('user', user);
       if (!user) {
