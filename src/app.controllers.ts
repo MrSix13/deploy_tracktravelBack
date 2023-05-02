@@ -1,14 +1,14 @@
 import { Controller, Get, Query, Res, Req, HttpStatus } from '@nestjs/common';
 import { IsString, IsOptional } from 'class-validator';
 import { JwtService } from '@nestjs/jwt';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { GoogleAuthService } from './auth/google.service';
 
-interface IMyRequest extends Request {
-  params: {
-    token: string;
-  };
-}
+// interface IMyRequest extends Request {
+//   params: {
+//     token: string;
+//   };
+// }
 class QueryRolDto {
   @IsString()
   @IsOptional()
@@ -48,21 +48,33 @@ export class AppController {
       // // Redirigimos al usuario a la URL deseada con el JWT
       console.log('link', `${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
       // response.redirect(`${process.env.API_URL}/home/${tokenJWT}`);
-      // response.redirect(`${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
-      response.status(HttpStatus.OK).json({
-        email: userDTO.email,
-        token: tokenJWT,
-      });
+      response.redirect(`${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
+      // response.status(HttpStatus.OK).json({
+      //   email: userDTO.email,
+      //   token: tokenJWT,
+      // });
     } catch (error) {
       console.error(error);
       response.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
     }
   }
 
-  @Get('/home/:token')
-  async authGoogleStatus(@Req() request: IMyRequest & { user: any }, @Res() response: Response) {
-    const { token } = request.params;
-    response.json({ token, message: 'Successfully authenticated' });
+  @Get('/api/auth/google/status')
+  async authGoogleStatus(@Req() request: Request, @Res() response: Response) {
+    try {
+      const { user } = request;
+      console.log('user', user);
+      if (!user) {
+        response.status(HttpStatus.OK).json('Not Authenticated');
+      }
+
+      response.status(HttpStatus.OK).json({
+        email: user,
+      });
+    } catch (error) {
+      console.error(error);
+      response.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
+    }
   }
 
   @Get('logout')
