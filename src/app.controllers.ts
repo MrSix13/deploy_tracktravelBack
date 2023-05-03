@@ -45,7 +45,7 @@ export class AppController {
       const payload = { sub: userDTO.email, role };
       const tokenJWT = this.jwtService.sign(payload, { secret: process.env.JWT_SECRET });
 
-      // // Redirigimos al usuario a la URL deseada con el JWT
+      // // Redirigimos al usuario a la URL deseada con el token de google
       console.log('token', token);
       console.log('link', `${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
       // response.redirect(`${process.env.API_URL}/home/${tokenJWT}`);
@@ -53,6 +53,7 @@ export class AppController {
       response.status(HttpStatus.OK).json({
         email: userDTO.email,
         token: tokenJWT,
+        type: 'google_auth',
       });
     } catch (error) {
       console.error(error);
