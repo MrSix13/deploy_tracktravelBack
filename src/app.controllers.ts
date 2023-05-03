@@ -46,6 +46,7 @@ export class AppController {
       const tokenJWT = this.jwtService.sign(payload, { secret: process.env.JWT_SECRET });
 
       // // Redirigimos al usuario a la URL deseada con el JWT
+      console.log('token', token);
       console.log('link', `${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
       // response.redirect(`${process.env.API_URL}/home/${tokenJWT}`);
       // response.redirect(`${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
