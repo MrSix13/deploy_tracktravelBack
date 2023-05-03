@@ -49,12 +49,12 @@ export class AppController {
       console.log('token', token);
       console.log('link', `${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
       // response.redirect(`${process.env.API_URL}/home/${tokenJWT}`);
-      // response.redirect(`${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
-      response.status(HttpStatus.OK).json({
-        email: userDTO.email,
-        token: tokenJWT,
-        type: 'google_auth',
-      });
+      response.redirect(`${process.env.DEEP_LINK_CLIENT}/Logged/${tokenJWT}`);
+      // response.status(HttpStatus.OK).json({
+      //   email: userDTO.email,
+      //   token: tokenJWT,
+      //   type: 'google_auth',
+      // });
     } catch (error) {
       console.error(error);
       response.status(HttpStatus.INTERNAL_SERVER_ERROR).send();
